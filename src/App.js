@@ -1,22 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './App.css';
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = { value: '', apiResult: '' };
+function App() {
 
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
+  const [searchString, setSearchString] = useState("");
+  const [apiResult, setApiResult] = useState("");
+
+  const handleSubmit = (event) => { 
+    console.log(searchString);
+    setApiResult(searchString);
+    setSearchString("");
+    event.preventDefault();
   }
 
-  render() {
-    return (
+   return (
     <div className="App">
       <header className="App-header">
       <h3>Bible Search 1.0</h3>
 
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={handleSubmit}>
           <label>
             Search for a verse?
           </label>
@@ -24,31 +26,19 @@ class App extends React.Component {
           <input
             id="new-todo"
             type="text"
-            onChange={this.handleChange}
-            value={this.state.value}
+            value={searchString}
+            onChange={e => setSearchString(e.target.value)}
           />
           <button>
             Search
           </button>
       </form>
 
-      {this.state.apiResult ? <ul><li>{this.state.apiResult}</li></ul> : null}
+      {apiResult ? <ul><li>{apiResult}</li></ul> : null}
     
       </header>
     </div>
-    )
-  }
-    
-  handleChange(event) {
-    this.setState({ value: event.target.value });
-  }
-
-  handleSubmit(event) { 
-    this.setState({ value:'', apiResult: this.state.value });
-    console.log(this.state.value);
-    event.preventDefault();
-  }
-
+   )
 }
 
 export default App;
