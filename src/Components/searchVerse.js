@@ -1,4 +1,7 @@
 import React, { useState } from "react";
+import "./SearchVerse.css";
+import * as searchService from "../Services/VerseService";
+
 
 export function SearchVerse(props) {
   const [searchString, setSearchString] = useState("");
@@ -25,7 +28,9 @@ export function SearchVerse(props) {
         <button>Search</button>
       </form>
 
-      {apiResult ? (<ul><li>{apiResult}</li></ul>) : null}
+      <button onClick={searchService.fetchVerseTest}>PUSH</button>
+
+      {apiResult ? <div className="apiResult">{apiResult}</div> : null}
     </div>
   );
 }

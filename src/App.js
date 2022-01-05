@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { SearchVerse } from './Components/searchVerse';
+import { SearchVerse } from './Components/SearchVerse';
 
 function App() {
 
