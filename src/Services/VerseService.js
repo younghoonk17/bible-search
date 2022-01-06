@@ -1,12 +1,13 @@
 import database from "./FirebaseService";
 import { getDatabase, ref, child, get } from "firebase/database";
 
-export function fetchVerseTest(){
+export function fetchVerseTest(bible, callback){
   const dbRef = ref(getDatabase());
-  get(child(dbRef, `text/1/text`))
+  get(child(dbRef, `bible/${bible}/1/1/text`))
     .then((snapshot) => {
       if (snapshot.exists()) {
         console.log(snapshot.val());
+        callback(snapshot.val());
       } else {
         console.log("No data available");
       }

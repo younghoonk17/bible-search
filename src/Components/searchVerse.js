@@ -7,16 +7,14 @@ export function SearchVerse(props) {
   const [searchString, setSearchString] = useState("");
   const [apiResult, setApiResult] = useState("");
 
-  const handleSubmit = (event) => {
-    console.log(searchString);
-    setApiResult(searchString);
-    setSearchString("");
+  const submit = (event) => {
+    searchService.fetchVerseTest(searchString, setApiResult);
     event.preventDefault();
   };
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={submit}>
         <label>Search for a verse?</label>
         <br></br>
         <input
@@ -28,9 +26,8 @@ export function SearchVerse(props) {
         <button>Search</button>
       </form>
 
-      <button onClick={searchService.fetchVerseTest}>PUSH</button>
+        {apiResult ? <div className="apiResult">{apiResult}</div> : null}
 
-      {apiResult ? <div className="apiResult">{apiResult}</div> : null}
     </div>
   );
 }
