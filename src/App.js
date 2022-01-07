@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import { SearchVerse } from './Components/SearchVerse';
+import { SearchComponent } from './Components/SearchComponent';
 
 function App() {
 
@@ -9,7 +9,7 @@ function App() {
       <header className="App-header">
       <h3>Bible Search 1.0</h3>
 
-      <SearchVerse/>
+      <SearchComponent/>
     
       </header>
     </div>
