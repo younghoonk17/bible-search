@@ -10,15 +10,16 @@ export function SearchComponent(props) {
   const [verse, setVerse] = useState(1);
   const [chapter, setChapter] = useState(1);
   const [book, setBook] = useState("test");
+  const [englishBook, setEnglishBook] = useState("test");
 
   const submit = (event) => {
     const numbers = extractNumbers(searchString);
     const book = extractBook(searchString);
 
-    console.log("english: ", traslateBook(book));
-
     console.log("Searching for", book, numbers[0], numbers[1]);
     searchService.fetchVerseTest(book, numbers[0], numbers[1], setApiResult);
+
+    setEnglishBook(translateBook(book));
     
     event.preventDefault();
   };
@@ -37,6 +38,8 @@ export function SearchComponent(props) {
         <button>Search</button>
       </form>
 
+      <div>English chapter: {englishBook}</div>
+
       {apiResult ? <div className="apiResult">{apiResult}</div> : null}
 
     </div>
@@ -53,6 +56,6 @@ function extractNumbers( searchString) {
   return searchString.match(regularExpression);
 }
 
-function traslateBook( book) {
+function translateBook( book) {
   return BibleDict[book];
 }
