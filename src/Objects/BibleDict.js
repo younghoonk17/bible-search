@@ -37,7 +37,7 @@
     "스가랴" : "Zechariah",
     "말라기" : "Malachi",
 
-
+    "창세기": "Genesis",
     "마태복음" : "Matthew",
     "마가복음" : "Mark",
     "누가복음" : "Luke",
