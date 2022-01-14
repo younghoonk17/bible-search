@@ -8,10 +8,10 @@ import { NKV } from "../Objects/NKV";
 export function SearchComponent(props) {
   const [searchString, setSearchString] = useState("");
   const [apiResult, setApiResult] = useState(""); 
-  const [verse, setVerse] = useState(1);
-  const [chapter, setChapter] = useState(1);
-  const [book, setBook] = useState("test");
-  const [englishVerse, setEnglishVerse] = useState("test");
+  const [verse, setVerse] = useState(null);
+  const [chapter, setChapter] = useState(null);
+  const [book, setBook] = useState("");
+  const [englishVerse, setEnglishVerse] = useState("");
 
   const submit = (event) => {
     const numbers = extractNumbers(searchString);
@@ -25,6 +25,8 @@ export function SearchComponent(props) {
 
 
     console.log("Searching for", book, chapter, verse);
+
+    setApiResult("Searching...")
     searchService.fetchVerseTest(book, chapter, verse, setApiResult);
 
     let translatedBook = translateBook(book);
@@ -51,7 +53,7 @@ export function SearchComponent(props) {
       </form>
 
       <div className="apiResult">
-        <div className="apiResult-title">{book}:{chapter}:{verse} </div>
+        {book ? <div className="apiResult-title">{book}:{chapter}:{verse}</div> : "Welcome"}
         <div className="apiResult-kor">{apiResult} </div>
         <div className="apiResult-eng">{englishVerse} </div>
       </div>
