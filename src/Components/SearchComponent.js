@@ -27,7 +27,11 @@ export function SearchComponent(props) {
     console.log("Searching for", book, chapter, verse);
     searchService.fetchVerseTest(book, chapter, verse, setApiResult);
 
-    setEnglishVerse(findNKJ(translateBook(book), chapter, verse));
+    let translatedBook = translateBook(book);
+
+    let engVerse = findNKJ( translatedBook, chapter, verse);
+
+    setEnglishVerse(engVerse);
     
     event.preventDefault();
   };
@@ -46,10 +50,11 @@ export function SearchComponent(props) {
         <button>Search</button>
       </form>
 
-      <div className="apiResult">{book}:{chapter}:{verse}</div>
-
-      {apiResult ? <div className="apiResult">{apiResult}</div> : null}
-      {apiResult ? <div className="apiResult">{englishVerse}</div> : null}
+      <div className="apiResult">
+        <div className="apiResult-title">{book}:{chapter}:{verse} </div>
+        <div className="apiResult-kor">{apiResult} </div>
+        <div className="apiResult-eng">{englishVerse} </div>
+      </div>
 
     </div>
   );
@@ -72,6 +77,14 @@ function translateBook( book) {
 function findNKJ(engBook, chapter, verse) {
   const chapterName = "Chapter " + chapter;
   const verseName = "verse " + verse;
-  return NKV["NKV"][engBook][chapterName][verseName];
+
+  if(
+    typeof NKV["NKV"][engBook] != "undefined" &&
+    typeof NKV["NKV"][engBook][chapterName] != "undefined" &&
+    typeof NKV["NKV"][engBook][chapterName][verseName] != "undefined"){
+    return NKV["NKV"][engBook][chapterName][verseName];
+  }
+  
+  return "Not found";
 }
 

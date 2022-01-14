@@ -15,7 +15,7 @@
     "느헤미야" : "Nehemiah",
     "에스더" : "Esther",
     "욥기" : "Job",
-    "시편" : "Psalm",
+    "시편" : "Psalms",
     "잠언" : "Proverbs",
     "전도서" : "Ecclesiastes",
     "아가" : "SongOfSolomon",

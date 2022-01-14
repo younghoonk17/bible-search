@@ -1,5 +1,20 @@
 .apiResult {
-  background-color: gray;
+  background-color: #282A37;
   font-size: medium;
   margin: 40px;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
+}
+
+.apiResult-title {
+  padding: 10px 10px;
+}
+
+.apiResult-kor {
+  padding: 10px 10px;
+}
+
+.apiResult-eng {
+  padding: 10px 10px;
 }
