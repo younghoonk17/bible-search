@@ -4,7 +4,6 @@ import * as searchService from "../Services/VerseService";
 import { BibleDict } from "../Objects/BibleDict";
 import { NKV } from "../Objects/NKV";
 
-
 export function SearchComponent(props) {
   const [searchString, setSearchString] = useState("");
   const [apiResult, setApiResult] = useState(""); 
@@ -30,16 +29,15 @@ export function SearchComponent(props) {
     setChapter(chapter);
     setVerse(verse);
 
-
     setApiResult("Searching...")
     searchService.fetchVerseTest(book, chapter, verse, setApiResult);
 
     let translatedBook = translateBook(book);
 
-    let engVerse = "";
+    let engVerse = [];
 
     for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
-      engVerse += findNKJ( translatedBook, chapter, i);
+      engVerse.push(i + '. ' + findNKJ( translatedBook, chapter, i));
     }
 
     setEnglishVerse(engVerse);
@@ -64,7 +62,7 @@ export function SearchComponent(props) {
       <div className="apiResult">
         {book ? <div className="apiResult-title">{searchString}</div> : "Welcome"}
         <div className="apiResult-kor">{apiResult} </div>
-        <div className="apiResult-eng">{englishVerse} </div>
+        <div className="apiResult-eng">{englishVerse && englishVerse.map(item => <div>{item}</div>)}</div>
       </div>
 
     </div>
