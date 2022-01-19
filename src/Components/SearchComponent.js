@@ -14,24 +14,33 @@ export function SearchComponent(props) {
   const [englishVerse, setEnglishVerse] = useState("");
 
   const submit = (event) => {
-    const numbers = extractNumbers(searchString);
+
     const book = extractBook(searchString);
+    const numbers = extractNumbers(searchString);
     const chapter = numbers[0];
     const verse = numbers[1];
+    var verse2 = "0";
+
+    if (isMultiLineSearch(searchString)){
+      verse2 = numbers[2];
+      console.log(verse2);
+    }
 
     setBook(book);
     setChapter(chapter);
     setVerse(verse);
 
 
-    console.log("Searching for", book, chapter, verse);
-
     setApiResult("Searching...")
     searchService.fetchVerseTest(book, chapter, verse, setApiResult);
 
     let translatedBook = translateBook(book);
 
-    let engVerse = findNKJ( translatedBook, chapter, verse);
+    let engVerse = "";
+
+    for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
+      engVerse += findNKJ( translatedBook, chapter, i);
+    }
 
     setEnglishVerse(engVerse);
     
@@ -53,7 +62,7 @@ export function SearchComponent(props) {
       </form>
 
       <div className="apiResult">
-        {book ? <div className="apiResult-title">{book}:{chapter}:{verse}</div> : "Welcome"}
+        {book ? <div className="apiResult-title">{searchString}</div> : "Welcome"}
         <div className="apiResult-kor">{apiResult} </div>
         <div className="apiResult-eng">{englishVerse} </div>
       </div>
@@ -61,6 +70,12 @@ export function SearchComponent(props) {
     </div>
   );
 }
+
+function isMultiLineSearch (searchString) {
+  const regularExpression = /-/g;
+  return regularExpression.test(searchString);
+}
+
 
 function extractBook( searchString) {
   const regularExpression = /[\u3131-\uD79D]+/ugi;
@@ -80,13 +95,9 @@ function findNKJ(engBook, chapter, verse) {
   const chapterName = "Chapter " + chapter;
   const verseName = "verse " + verse;
 
-  if(
-    typeof NKV["NKV"][engBook] != "undefined" &&
-    typeof NKV["NKV"][engBook][chapterName] != "undefined" &&
-    typeof NKV["NKV"][engBook][chapterName][verseName] != "undefined"){
-    return NKV["NKV"][engBook][chapterName][verseName];
+  if(typeof NKV["NKV"][engBook] == "undefined" ){
+    return "Not found";
   }
   
-  return "Not found";
+  return NKV["NKV"][engBook][chapterName][verseName];
 }
-
