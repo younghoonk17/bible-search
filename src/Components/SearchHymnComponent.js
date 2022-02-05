@@ -28,6 +28,7 @@ export function SearchHymnComponent(props) {
             type="text"
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
+            placeholder="Any number between 1-645"
           />
           <button
           className="search-button">SEARCH</button>

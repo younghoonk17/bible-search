@@ -44,3 +44,7 @@
   background-color: #282A37;
   color: white;
 }
+
+input:focus::placeholder {
+  color: transparent;
+}

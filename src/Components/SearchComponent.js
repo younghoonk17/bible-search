@@ -55,7 +55,7 @@ export function SearchComponent(props) {
             type="text"
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
-            autofocus
+            placeholder="창세기 1:1 or 창세기 1:1-5"
           />
           <button
           className="search-button">SEARCH</button>
