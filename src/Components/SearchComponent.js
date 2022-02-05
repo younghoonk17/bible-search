@@ -32,13 +32,18 @@ export function SearchComponent(props) {
     setApiResult("Searching...")
     searchService.fetchVerseTest(book, chapter, verse, setApiResult);
 
+    //English verse
     let translatedBook = translateBook(book);
-
     let engVerse = [];
 
-    for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
-      engVerse.push(i + '. ' + findNKJ( translatedBook, chapter, i));
+    if (verse2 !=0){
+      for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
+        engVerse.push(i + '. ' + findNKJ( translatedBook, chapter, i));
+      }
+    }else {
+      engVerse.push(verse + '. ' + findNKJ( translatedBook, chapter, verse))
     }
+    
 
     setEnglishVerse(engVerse);
     
