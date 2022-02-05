@@ -5,92 +5,90 @@ import { BibleDict } from "../Objects/BibleDict";
 import { NKV } from "../Objects/NKV";
 
 export function SearchComponent(props) {
+  const [searchedString, setSearchedString] = useState("");
   const [searchString, setSearchString] = useState("");
-  const [apiResult, setApiResult] = useState(""); 
-  const [verse, setVerse] = useState(null);
-  const [chapter, setChapter] = useState(null);
-  const [book, setBook] = useState("");
+  const [apiResult, setApiResult] = useState("");
   const [englishVerse, setEnglishVerse] = useState("");
 
   const submit = (event) => {
-
     const book = extractBook(searchString);
     const numbers = extractNumbers(searchString);
     const chapter = numbers[0];
     const verse = numbers[1];
-    var verse2 = "0";
+    let verse2 = "0";
 
-    if (isMultiLineSearch(searchString)){
+    setSearchedString(searchString);
+
+    if (isMultiLineSearch(searchString)) {
       verse2 = numbers[2];
       console.log(verse2);
     }
 
-    setBook(book);
-    setChapter(chapter);
-    setVerse(verse);
-
-    setApiResult("Searching...")
-    searchService.fetchVerseTest(book, chapter, verse, setApiResult);
+    searchService.fetchVerseTest(book, chapter, verse, verse2, setApiResult);
 
     //English verse
     let translatedBook = translateBook(book);
     let engVerse = [];
 
-    if (verse2 !=0){
+    if (verse2 != 0) {
       for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
-        engVerse.push(i + '. ' + findNKJ( translatedBook, chapter, i));
+        engVerse.push(i + ". " + findNKJ(translatedBook, chapter, i));
       }
-    }else {
-      engVerse.push(verse + '. ' + findNKJ( translatedBook, chapter, verse))
+    } else {
+      engVerse.push(verse + ". " + findNKJ(translatedBook, chapter, verse));
     }
-    
 
     setEnglishVerse(engVerse);
-    
+
     event.preventDefault();
   };
 
   return (
     <div>
-      <form onSubmit={submit}>
-        <label>Search for a verse?</label>
-        <br></br>
-        <input
-          id="new-todo"
-          type="text"
-          value={searchString}
-          onChange={(e) => setSearchString(e.target.value)}
-        />
-        <button>Search</button>
-      </form>
-
-      <div className="apiResult">
-        {book ? <div className="apiResult-title">{searchString}</div> : "Welcome"}
-        <div className="apiResult-kor">{apiResult} </div>
-        <div className="apiResult-eng">{englishVerse && englishVerse.map(item => <div>{item}</div>)}</div>
+      <div className="bibleForm">
+        <form onSubmit={submit}>
+          <label>Search for a verse?</label>
+          <br></br>
+          <input
+            id="new-todo"
+            type="text"
+            value={searchString}
+            onChange={(e) => setSearchString(e.target.value)}
+          />
+          <button>Search</button>
+        </form>
       </div>
-
+      {searchedString ? (
+        <div className="apiResult">
+          <div className="apiResult-title">{searchedString}</div>
+          <div className="apiResult-kor">
+            {apiResult && apiResult.map((item) => <div>{item}</div>)}{" "}
+          </div>
+          <div className="apiResult-eng">
+            {englishVerse && englishVerse.map((item) => <div>{item}</div>)}
+          </div>
+        </div>
+      ) : null}
     </div>
   );
 }
 
-function isMultiLineSearch (searchString) {
+function isMultiLineSearch(searchString) {
   const regularExpression = /-/g;
   return regularExpression.test(searchString);
 }
 
-
-function extractBook( searchString) {
-  const regularExpression = /[\u3131-\uD79D]+/ugi;
+function extractBook(searchString) {
+  const regularExpression = /[\u3131-\uD79D]+/giu;
   return searchString.match(regularExpression);
 }
 
-function extractNumbers( searchString) {
+function extractNumbers(searchString) {
   const regularExpression = /\d+/g;
   return searchString.match(regularExpression);
 }
 
-function translateBook( book) {
+function translateBook(book) {
   return BibleDict[book];
 }
 
@@ -98,9 +96,9 @@ function findNKJ(engBook, chapter, verse) {
   const chapterName = "Chapter " + chapter;
   const verseName = "verse " + verse;
 
-  if(typeof NKV["NKV"][engBook] == "undefined" ){
+  if (typeof NKV["NKV"][engBook] == "undefined") {
     return "Not found";
   }
-  
+
   return NKV["NKV"][engBook][chapterName][verseName];
 }

@@ -1,13 +1,24 @@
 import { getDatabase, ref, child, get } from "firebase/database";
 import database from "./FirebaseService";
 
-export function fetchVerseTest(book,chapter,verse,callback){
+export function fetchVerseTest(book, chapter, verse, verse2, callback) {
   const dbRef = ref(getDatabase());
-  get(child(dbRef, `bible/${book}/${chapter}/${verse}/text`))
+  get(child(dbRef, `bible/${book}/${chapter}`))
     .then((snapshot) => {
       if (snapshot.exists()) {
-        console.log(snapshot.val());
-        callback(snapshot.val());
+        let chapterObject = snapshot.val();
+        let result = [];
+
+        if (verse2 == 0) {
+          result.push(verse + ". " + chapterObject[verse].text);
+        } else {
+          for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
+            result.push(i + ". " + chapterObject[i].text);
+          }
+        }
+        console.log(result);
+
+        callback(result);
       } else {
         console.log("No data available");
       }
@@ -15,4 +26,4 @@ export function fetchVerseTest(book,chapter,verse,callback){
     .catch((error) => {
       console.error(error);
     });
-};
+}
