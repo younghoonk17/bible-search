@@ -15,7 +15,7 @@ export function SearchComponent(props) {
     const numbers = extractNumbers(searchString);
     const chapter = numbers[0];
     const verse = numbers[1];
-    let verse2 = "0";
+    let verse2 = 0;
 
     setSearchedString(searchString);
 
@@ -49,13 +49,17 @@ export function SearchComponent(props) {
         <form onSubmit={submit}>
           <label>Search for a verse?</label>
           <br></br>
+          <div className="group-button">
           <input
-            id="new-todo"
+            className="button"
             type="text"
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
+            autofocus
           />
-          <button>Search</button>
+          <button
+          className="search-button">SEARCH</button>
+          </div>
         </form>
       </div>
       {searchedString ? (

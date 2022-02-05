@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
+
 .App {
   text-align: center;
 }
@@ -43,3 +45,18 @@
   justify-content: space-evenly;
   width: 100%;
 }
+
+.main-title{
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  align-items: center;
+  font-family: 'Lobster', cursive;
+}
+
+.main-title-yh{
+  font-size: 23px;
+  margin-top: 20px;
+  padding-left: 10px;
+}
+

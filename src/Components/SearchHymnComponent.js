@@ -22,17 +22,22 @@ export function SearchHymnComponent(props) {
         <form onSubmit={submit}>
           <label>Search for a Hymn?</label>
           <br></br>
+          <div className="group-button">
           <input
+            className="button"
             type="text"
             value={searchString}
             onChange={(e) => setSearchString(e.target.value)}
           />
-          <button>Search</button>
+          <button
+          className="search-button">SEARCH</button>
+          </div>
         </form>
       </div>
       {title ? (
         <div className="result">
           <div className="result-title">{title} </div>
+          <br></br>
           <div className="result-verse">
             {verse && verse.map((item) => <div>{item} </div>)}{" "}
           </div>

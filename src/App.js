@@ -8,7 +8,10 @@ function App() {
    return (
     <div className="App">
       <header className="App-header">
-      <h3>Bible Search 1.0</h3>
+      <div className='main-title'>
+        <h1>Bible Search 1.0 </h1>
+        <div className='main-title-yh'>by yh</div>
+      </div>
 
       <div className='main'>
         <SearchComponent/>
