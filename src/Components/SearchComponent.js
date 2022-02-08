@@ -66,10 +66,13 @@ export function SearchComponent(props) {
         <div className="apiResult">
           <div className="apiResult-title">{searchedString}</div>
           <div className="apiResult-kor">
-            {apiResult && apiResult.map((item) => <div>{item}</div>)}{" "}
-          </div>
-          <div className="apiResult-eng">
-            {englishVerse && englishVerse.map((item) => <div>{item}</div>)}
+            {apiResult && apiResult.map( (kor,eng) => 
+              <div>
+                <div>{kor}</div>
+                <div>{englishVerse && englishVerse[eng]}</div>
+                <br></br>
+              </div> 
+              )}
           </div>
         </div>
       ) : null}
