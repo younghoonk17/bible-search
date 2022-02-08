@@ -66,13 +66,13 @@ export function SearchComponent(props) {
         <div className="apiResult">
           <div className="apiResult-title">{searchedString}</div>
           <div className="apiResult-kor">
-            {apiResult && apiResult.map( (kor,eng) => 
+            {apiResult ? apiResult.map( (kor,eng) => 
               <div>
                 <div>{kor}</div>
                 <div>{englishVerse && englishVerse[eng]}</div>
                 <br></br>
               </div> 
-              )}
+              ) : "Loading..."}
           </div>
         </div>
       ) : null}
