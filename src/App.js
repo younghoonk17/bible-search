@@ -1,41 +1,23 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
+import { SearchComponent } from './Components/SearchComponent';
+import { SearchHymnComponent } from './Components/SearchHymnComponent';
 
 function App() {
-
-  const [searchString, setSearchString] = useState("");
-  const [apiResult, setApiResult] = useState("");
-
-  const handleSubmit = (event) => { 
-    console.log(searchString);
-    setApiResult(searchString);
-    setSearchString("");
-    event.preventDefault();
-  }
 
    return (
     <div className="App">
       <header className="App-header">
-      <h3>Bible Search 1.0</h3>
+      <div className='main-title'>
+        <h1>Bible Search 1.0 </h1>
+        <div className='main-title-yh'>by yh</div>
+      </div>
 
-      <form onSubmit={handleSubmit}>
-          <label>
-            Search for a verse?
-          </label>
-          <br></br>
-          <input
-            id="new-todo"
-            type="text"
-            value={searchString}
-            onChange={e => setSearchString(e.target.value)}
-          />
-          <button>
-            Search
-          </button>
-      </form>
-
-      {apiResult ? <ul><li>{apiResult}</li></ul> : null}
-    
+      <div className='main'>
+        <SearchComponent/>
+        <SearchHymnComponent/>
+      </div>
+   
       </header>
     </div>
    )
