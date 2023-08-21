@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/bible-search/static/css/main.ce71a492.css",
+    "main.js": "/bible-search/static/js/main.1db7688c.js",
+    "static/js/496.990033d5.chunk.js": "/bible-search/static/js/496.990033d5.chunk.js",
+    "index.html": "/bible-search/index.html",
+    "main.ce71a492.css.map": "/bible-search/static/css/main.ce71a492.css.map",
+    "main.1db7688c.js.map": "/bible-search/static/js/main.1db7688c.js.map",
+    "496.990033d5.chunk.js.map": "/bible-search/static/js/496.990033d5.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.ce71a492.css",
+    "static/js/main.1db7688c.js"
+  ]
+}
