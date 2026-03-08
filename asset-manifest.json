@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/bible-search/static/css/main.49908378.css",
-    "main.js": "/bible-search/static/js/main.c20535e2.js",
-    "static/js/496.776d2a9c.chunk.js": "/bible-search/static/js/496.776d2a9c.chunk.js",
+    "main.css": "/bible-search/static/css/main.ce71a492.css",
+    "main.js": "/bible-search/static/js/main.ab71ab1a.js",
+    "static/js/496.b2e600e2.chunk.js": "/bible-search/static/js/496.b2e600e2.chunk.js",
     "index.html": "/bible-search/index.html",
-    "main.49908378.css.map": "/bible-search/static/css/main.49908378.css.map",
-    "main.c20535e2.js.map": "/bible-search/static/js/main.c20535e2.js.map",
-    "496.776d2a9c.chunk.js.map": "/bible-search/static/js/496.776d2a9c.chunk.js.map"
+    "main.ce71a492.css.map": "/bible-search/static/css/main.ce71a492.css.map",
+    "main.ab71ab1a.js.map": "/bible-search/static/js/main.ab71ab1a.js.map",
+    "496.b2e600e2.chunk.js.map": "/bible-search/static/js/496.b2e600e2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.49908378.css",
-    "static/js/main.c20535e2.js"
+    "static/css/main.ce71a492.css",
+    "static/js/main.ab71ab1a.js"
   ]
 }
