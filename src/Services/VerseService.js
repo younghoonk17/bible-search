@@ -9,7 +9,7 @@ export function fetchVerseTest(book, chapter, verse, verse2, callback) {
         let chapterObject = snapshot.val();
         let result = [];
 
-        if (verse2 == 0) {
+        if (verse2 === 0) {
           result.push(verse + ". " + chapterObject[verse].text);
         } else {
           for (let i = parseInt(verse); i <= parseInt(verse2); i++) {

@@ -30,7 +30,7 @@ export function SearchComponent(props) {
     let translatedBook = translateBook(book);
     let engVerse = [];
 
-    if (verse2 != 0) {
+    if (verse2 !== 0) {
       for (let i = parseInt(verse); i <= parseInt(verse2); i++) {
         engVerse.push(i + ". " + findNKJ(translatedBook, chapter, i));
       }
